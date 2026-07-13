@@ -97,79 +97,6 @@
             color: #fbbf24;
             text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
         }
-
-        .card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 24px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(52, 211, 153, 0.25);
-        }
-
-        h2 {
-            color: #34d399;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            border-bottom: 2px solid rgba(52, 211, 153, 0.15);
-            padding-bottom: 14px;
-        }
-
-        p {
-            margin-bottom: 18px;
-            color: #e2e8f0;
-            text-align: justify;
-            font-size: 1.05rem;
-        }
-
-        ul {
-            margin-left: 24px;
-            margin-bottom: 18px;
-            color: #e2e8f0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        .highlight-box {
-            background: rgba(52, 211, 153, 0.05);
-            border-left: 4px solid #34d399;
-            padding: 24px;
-            margin: 25px 0;
-            border-radius: 0 16px 16px 0;
-            border-top: 1px solid rgba(52, 211, 153, 0.1);
-            border-right: 1px solid rgba(52, 211, 153, 0.1);
-            border-bottom: 1px solid rgba(52, 211, 153, 0.1);
-        }
-
-        .highlight-box strong {
-            color: #6ee7b7;
-            display: block;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #94a3b8;
-            font-size: 0.95rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 60px;
-        }
     </style>
 </head>
 <body>
@@ -183,18 +110,6 @@
         <div id="game-container">
             <canvas id="gameCanvas" width="750" height="360"></canvas>
             <div class="btn-instruction">Tekan <strong>TOMBOL SPASI</strong> atau <strong>KLIK AREA GAME</strong> untuk Melompat Menyebrang Jalan</div>
-        </div>
-
-        <div class="card">
-            <h2>🎮 Deskripsi Game (Kelompok)</h2>
-            <p><strong>Nama Game:</strong> Pitik Nglayap: Endless Forest Cross</p>
-            <p><strong>Genre:</strong> 2D Endless Runner / Traffic Dodger</p>
-            <p>
-                <strong>Pitik Nglayap</strong> adalah sebuah game arcade berbasis web bertema kearifan lokal yang mengisahkan seekor ayam kampung nekat yang kabur dari kandang demi menjelajahi dunia luar. Kali ini, si Pitik harus melompati jalan raya membelah hutan belantara yang sangat padat dan ramai.
-            </p>
-            <p>
-                Pemain bertanggung jawab penuh untuk memandu si Pitik menyebrang dengan selamat, menghindari marabahaya lalu lintas berupa kendaraan bermotor yang melaju kencang. Jika salah memperhitungkan waktu lompatan, si Pitik akan tertabrak kendaraan dan memicu kondisi Game Over.
-            </p>
         </div>
     </div>
 
@@ -224,7 +139,7 @@
 
         const pitik = {
             x: 80,
-            y: 250, // Disesuaikan sedikit agar pas di atas rumput rimbun
+            y: 250, 
             width: 36,
             height: 36,
             gravity: 0.65,
@@ -398,10 +313,6 @@
             // Pembatas Garis Kuning Neon
             ctx.fillStyle = '#fbbf24';
             ctx.fillRect(0, 280, canvas.width, 5);
-
-            // =========================================================
-            // UPDATE: PERBAIKAN RUMPUT BAWAH AGAR RIMBUN & AESTHETIC
-            // =========================================================
             
             // Base layer tanah/rumput tua gelap
             let grassGrad = ctx.createLinearGradient(0, 285, 0, canvas.height);
@@ -413,7 +324,7 @@
             // LAYER RUMPUT 1: Rimbun Belakang (Warna Hijau Mint Cerah)
             ctx.fillStyle = '#10b981';
             for (let i = -5; i < canvas.width + 10; i += 8) {
-                let grassHeight = 16 + Math.sin(i * 0.08) * 6; // Menggunakan sin wave biar tingginya natural dinamis
+                let grassHeight = 16 + Math.sin(i * 0.08) * 6; 
                 ctx.beginPath();
                 ctx.moveTo(i, 285);
                 ctx.lineTo(i + 5, 285 - grassHeight);
