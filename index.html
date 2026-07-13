@@ -14,7 +14,6 @@
         }
 
         body {
-            /* Gradasi Latar Belakang Cerah & Estetik */
             background: linear-gradient(135deg, #0f172a 0%, #064e3b 50%, #022c22 100%);
             background-attachment: fixed;
             color: #f8fafc;
@@ -99,7 +98,6 @@
             text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
         }
 
-        /* Elegant Card Info */
         .card {
             background: rgba(30, 41, 59, 0.4);
             backdrop-filter: blur(12px);
@@ -182,14 +180,11 @@
     </header>
 
     <div class="container">
-
-        <!-- LAYER GAMEPLAY INTERAKTIF -->
         <div id="game-container">
             <canvas id="gameCanvas" width="750" height="360"></canvas>
             <div class="btn-instruction">Tekan <strong>TOMBOL SPASI</strong> atau <strong>KLIK AREA GAME</strong> untuk Melompat Menyebrang Jalan</div>
         </div>
 
-        <!-- DOKUMENTASI KELOMPOK -->
         <div class="card">
             <h2>🎮 Deskripsi Game (Kelompok)</h2>
             <p><strong>Nama Game:</strong> Pitik Nglayap: Endless Forest Cross</p>
@@ -198,44 +193,15 @@
                 <strong>Pitik Nglayap</strong> adalah sebuah game arcade berbasis web bertema kearifan lokal yang mengisahkan seekor ayam kampung nekat yang kabur dari kandang demi menjelajahi dunia luar. Kali ini, si Pitik harus melompati jalan raya membelah hutan belantara yang sangat padat dan ramai.
             </p>
             <p>
-                Pemain bertanggung jawab penuh untuk memandu si Pitik menyebrang dengan selamat, menghindari marabahaya lalu lintas berupa kendaraan bermotor (seperti mobil sedan sporty, truk logistik, hingga sepeda motor) yang melaju kencang. Jika salah memperhitungkan waktu lompatan, si Pitik akan tertabrak kendaraan dan memicu kondisi Game Over.
-            </p>
-            <div class="highlight-box">
-                <strong>Fitur Utama Game:</strong>
-                <ul>
-                    <li><strong>Tema Hutan Estetis Vibrant:</strong> Arena berlatar belakang langit gradasi senja, pepohonan pinus berlapis, efek atmosfer kabut, serta dedaunan berguguran yang interaktif.</li>
-                    <li><strong>Sistem Level Sepuasnya (Endless Level):</strong> Level permainan bertambah naik tanpa batas setiap kelipatan 10 poin, menaikkan kecepatan kendaraan secara matematis dan progresif.</li>
-                    <li><strong>Varian Kendaraan Acak:</strong> Rintangan didesain bervariasi secara prosedural mulai dari mobil, truk, hingga motor dengan warna neon yang mencolok.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- DOKUMENTASI INDIVIDU -->
-        <div class="card">
-            <h2>👤 Kontribusi & Deskripsi Individu</h2>
-            <p><strong>Nama Lengkap:</strong> [Isi Nama Lengkap Kamu di Sini]</p>
-            <p><strong>Kelas / Program Keahlian:</strong> XI RPL / Rekayasa Perangkat Lunak</p>
-            <p><strong>Peran dalam Projek:</strong> Game Logic & Environment Sprite Programmer</p>
-            <p>
-                Kontribusi mandiri saya pada projek ini berfokus pada perancangan grafis latar belakang (*environment design*) bertema hutan menggunakan algoritma rendering Canvas objek primitif serta transisi tema mekanika rintangan menjadi kendaraan dinamis. Saya juga menerapkan struktur logika **Endless Leveling** menggunakan fungsi matematika pembulatan ke bawah (`Math.floor`) untuk menciptakan kurva kesulitan yang terus bertambah secara konstan tanpa batas atas (*infinite progressive difficulty*).
-            </p>
-            <p>
-                Saya juga menerapkan perhitungan deteksi benturan berbasis koordinat persegi (*Axis-Aligned Bounding Box*) yang presisi untuk mendeteksi kapan tepatnya karakter Pitik berbenturan dengan bemper kendaraan depan maupun belakang. Seluruh manajemen kode program ini di-maintain dan di-hosting secara publik memanfaatkan ekosistem <strong>GitHub Pages</strong>.
+                Pemain bertanggung jawab penuh untuk memandu si Pitik menyebrang dengan selamat, menghindari marabahaya lalu lintas berupa kendaraan bermotor yang melaju kencang. Jika salah memperhitungkan waktu lompatan, si Pitik akan tertabrak kendaraan dan memicu kondisi Game Over.
             </p>
         </div>
-
     </div>
 
-    <footer>
-        <p>&copy; 2026 Projek Game Pitik Nglayap Nyebrang Jalan - Hak Cipta Dilindungi.</p>
-    </footer>
-
-    <!-- SCRIPT UTAMA LOGIKA GAME -->
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // State Global Game
         let gameActive = true;
         let score = 0;
         let currentLevel = 1;
@@ -256,16 +222,15 @@
             });
         }
 
-        // Properti Karakter Pitik (Ayam Kampung Super)
         const pitik = {
             x: 80,
-            y: 255,
+            y: 250, // Disesuaikan sedikit agar pas di atas rumput rimbun
             width: 36,
             height: 36,
             gravity: 0.65,
             lift: -12.5,
             velocity: 0,
-            groundY: 255,
+            groundY: 250,
             jump: function() {
                 if (this.y === this.groundY && gameActive) {
                     this.velocity = this.lift;
@@ -301,7 +266,7 @@
                 ctx.quadraticCurveTo(this.x - 6, this.y + 2, this.x + 6, this.y + 8);
                 ctx.fill();
 
-                // Badan Utama (Bulu Cerah)
+                // Badan Utama
                 ctx.fillStyle = '#fbbf24';
                 ctx.beginPath();
                 ctx.arc(this.x + 16, this.y + 16, 14, 0, Math.PI * 2);
@@ -334,7 +299,7 @@
                 ctx.lineTo(this.x + 35, this.y + 12);
                 ctx.fill();
 
-                // Mata Bulat Hitam Manis
+                // Mata
                 ctx.fillStyle = '#0f172a';
                 ctx.beginPath();
                 ctx.arc(this.x + 30, this.y + 4, 2.5, 0, Math.PI * 2);
@@ -342,15 +307,13 @@
             }
         };
 
-        // Rintangan Kendaraan Pop-Up
         let vehicles = [];
         const vehicleTypes = [
-            { type: 'sedan', width: 85, height: 35, color: '#ff0055' },  // Neon Pink Sedan
-            { type: 'truck', width: 115, height: 55, color: '#00b4d8' }, // Cyan Cyber Truck
-            { type: 'motor', width: 48, height: 32, color: '#ffb703' }   // Yellow Scooter
+            { type: 'sedan', width: 85, height: 35, color: '#ff0055' },
+            { type: 'truck', width: 115, height: 55, color: '#00b4d8' },
+            { type: 'motor', width: 48, height: 32, color: '#ffb703' }
         ];
 
-        // Latar Belakang Pohon Dinamis
         const trees = [
             { x: 40, size: 55 }, { x: 130, size: 75 }, { x: 240, size: 50 },
             { x: 340, size: 70 }, { x: 470, size: 80 }, { x: 590, size: 55 },
@@ -359,10 +322,9 @@
 
         function spawnVehicle() {
             let randomType = vehicleTypes[Math.floor(Math.random() * vehicleTypes.length)];
-            
             vehicles.push({
                 x: canvas.width,
-                y: 290 - randomType.height,
+                y: 286 - randomType.height,
                 width: randomType.width,
                 height: randomType.height,
                 color: randomType.color,
@@ -374,13 +336,13 @@
         function drawEnvironment() {
             // 1. Langit Senja Estetik (Gradasi Linear)
             let skyGrad = ctx.createLinearGradient(0, 0, 0, 150);
-            skyGrad.addColorStop(0, '#fdba74');  // Soft Sunset Orange
-            skyGrad.addColorStop(0.5, '#f472b6'); // Pastel Pink
-            skyGrad.addColorStop(1, '#38bdf8');   // Day Blue Sky
+            skyGrad.addColorStop(0, '#fdba74');
+            skyGrad.addColorStop(0.5, '#f472b6');
+            skyGrad.addColorStop(1, '#38bdf8');
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, canvas.width, 150);
 
-            // 2. Menggambar Pohon Hutan Pinus (Layer Belakang Gelap)
+            // 2. Menggambar Pohon Hutan Pinus
             trees.forEach(tree => {
                 ctx.fillStyle = '#065f46'; 
                 ctx.beginPath();
@@ -389,7 +351,6 @@
                 ctx.lineTo(tree.x + (tree.size * 0.45), 150);
                 ctx.fill();
 
-                // Layer Depan Lebih Terang (Mint Hijau)
                 ctx.fillStyle = '#059669'; 
                 ctx.beginPath();
                 ctx.moveTo(tree.x, 150 - (tree.size * 0.75));
@@ -398,7 +359,7 @@
                 ctx.fill();
             });
 
-            // Animasi Daun Berguguran di Hutan
+            // Animasi Daun Berguguran
             ctx.fillStyle = 'rgba(52, 211, 153, 0.6)';
             leaves.forEach(leaf => {
                 leaf.y += leaf.speed;
@@ -409,7 +370,7 @@
                 ctx.fill();
             });
 
-            // 3. Semak Belukar Pembatas Hutan Atas
+            // 3. Semak Belukar Pembatas Atas Jalan
             ctx.fillStyle = '#10b981';
             ctx.fillRect(0, 140, canvas.width, 20);
             
@@ -422,38 +383,81 @@
 
             // 4. Badan Aspal Jalan Raya Modern
             ctx.fillStyle = '#334155';
-            ctx.fillRect(0, 160, canvas.width, 130);
+            ctx.fillRect(0, 160, canvas.width, 125);
 
             // Marka Jalan Tengah Putih Bersih
             ctx.strokeStyle = '#f8fafc';
             ctx.lineWidth = 4;
             ctx.setLineDash([30, 20]);
             ctx.beginPath();
-            ctx.moveTo(0, 225);
-            ctx.lineTo(canvas.width, 225);
+            ctx.moveTo(0, 220);
+            ctx.lineTo(canvas.width, 220);
             ctx.stroke();
             ctx.setLineDash([]);
 
             // Pembatas Garis Kuning Neon
             ctx.fillStyle = '#fbbf24';
-            ctx.fillRect(0, 285, canvas.width, 5);
+            ctx.fillRect(0, 280, canvas.width, 5);
 
-            // 5. Trotoar Rumput Bawah (Tempat Berdiri Ayam)
-            let grassGrad = ctx.createLinearGradient(0, 290, 0, canvas.height);
-            grassGrad.addColorStop(0, '#10b981');
-            grassGrad.addColorStop(1, '#047857');
+            // =========================================================
+            // UPDATE: PERBAIKAN RUMPUT BAWAH AGAR RIMBUN & AESTHETIC
+            // =========================================================
+            
+            // Base layer tanah/rumput tua gelap
+            let grassGrad = ctx.createLinearGradient(0, 285, 0, canvas.height);
+            grassGrad.addColorStop(0, '#059669');
+            grassGrad.addColorStop(1, '#064e3b');
             ctx.fillStyle = grassGrad;
-            ctx.fillRect(0, 290, canvas.width, 70);
+            ctx.fillRect(0, 285, canvas.width, 75);
 
-            // Detail Tanaman Rumput Liar Estetik
-            ctx.fillStyle = '#6ee7b7';
-            for (let i = 15; i < canvas.width; i += 50) {
+            // LAYER RUMPUT 1: Rimbun Belakang (Warna Hijau Mint Cerah)
+            ctx.fillStyle = '#10b981';
+            for (let i = -5; i < canvas.width + 10; i += 8) {
+                let grassHeight = 16 + Math.sin(i * 0.08) * 6; // Menggunakan sin wave biar tingginya natural dinamis
                 ctx.beginPath();
-                ctx.moveTo(i, 320);
-                ctx.lineTo(i - 4, 305);
-                ctx.lineTo(i + 2, 320);
-                ctx.lineTo(i + 6, 302);
-                ctx.lineTo(i + 10, 320);
+                ctx.moveTo(i, 285);
+                ctx.lineTo(i + 5, 285 - grassHeight);
+                ctx.lineTo(i + 10, 285);
+                ctx.fill();
+            }
+
+            // LAYER RUMPUT 2: Rimbun Depan (Warna Hijau Lebih Muda/Pastel)
+            ctx.fillStyle = '#34d399';
+            for (let i = -2; i < canvas.width + 10; i += 12) {
+                let grassHeight = 12 + Math.cos(i * 0.1) * 4;
+                ctx.beginPath();
+                ctx.moveTo(i, 287);
+                ctx.lineTo(i + 6, 287 - grassHeight);
+                ctx.lineTo(i + 12, 287);
+                ctx.fill();
+            }
+
+            // LAYER RUMPUT 3: Variasi Rumput Liar Panjang Berkelompok
+            ctx.fillStyle = '#6ee7b7';
+            for (let i = 20; i < canvas.width; i += 60) {
+                ctx.beginPath();
+                ctx.moveTo(i, 310); ctx.lineTo(i - 4, 292); ctx.lineTo(i + 2, 310);
+                ctx.moveTo(i + 2, 310); ctx.lineTo(i + 5, 288); ctx.lineTo(i + 8, 310);
+                ctx.fill();
+            }
+
+            // AKSEN TAMBAHAN: Bunga Liar Estetik Kuning Putih Bertebaran
+            for (let i = 40; i < canvas.width; i += 95) {
+                let flowerY = 315 + Math.sin(i) * 12;
+                
+                // Kelopak Putih
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(i - 3, flowerY, 2.5, 0, Math.PI * 2);
+                ctx.arc(i + 3, flowerY, 2.5, 0, Math.PI * 2);
+                ctx.arc(i, flowerY - 3, 2.5, 0, Math.PI * 2);
+                ctx.arc(i, flowerY + 3, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Putik Tengah Oranye/Kuning
+                ctx.fillStyle = '#fbbf24';
+                ctx.beginPath();
+                ctx.arc(i, flowerY, 2.2, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -528,7 +532,6 @@
                 ctx.fillStyle = v.color;
 
                 if (v.type === 'sedan') {
-                    // Desain Sedan Sporty
                     ctx.fillRect(v.x, v.y + 12, v.width, v.height - 12);
                     ctx.beginPath();
                     ctx.moveTo(v.x + 15, v.y + 12);
@@ -536,10 +539,8 @@
                     ctx.lineTo(v.x + 65, v.y);
                     ctx.lineTo(v.x + 76, v.y + 12);
                     ctx.fill();
-                    // Kaca Film Futuristik
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
                     ctx.fillRect(v.x + 35, v.y + 3, 25, 7);
-                    // Lampu Neon Depan Kuning
                     ctx.fillStyle = '#ffea00';
                     ctx.fillRect(v.x, v.y + 16, 6, 7);
 
@@ -547,18 +548,16 @@
                     drawWheel(v.x + v.width - 18, v.y + v.height - 2, 8.5, wheelAngle);
 
                 } else if (v.type === 'truck') {
-                    // Desain Box Truk Logistik
                     ctx.fillStyle = '#f1f5f9';
                     ctx.fillRect(v.x + 35, v.y, v.width - 35, v.height - 4);
                     ctx.fillStyle = 'rgba(52, 211, 153, 0.2)';
                     ctx.fillRect(v.x + 40, v.y + 5, v.width - 45, v.height - 15);
 
-                    // Kepala Truk Kontras
                     ctx.fillStyle = v.color;
                     ctx.fillRect(v.x, v.y + 12, 35, v.height - 16);
                     ctx.fillStyle = 'rgba(30, 41, 59, 0.7)';
                     ctx.fillRect(v.x + 2, v.y + 16, 16, 12);
-                    ctx.fillStyle = '#e11d48'; // Lampu belakang merah
+                    ctx.fillStyle = '#e11d48';
                     ctx.fillRect(v.x + v.width - 5, v.y + v.height - 15, 5, 8);
 
                     drawWheel(v.x + 16, v.y + v.height - 4, 11, wheelAngle);
@@ -566,7 +565,6 @@
                     drawWheel(v.x + v.width - 16, v.y + v.height - 4, 11, wheelAngle);
 
                 } else if (v.type === 'motor') {
-                    // Desain Motor Matic Pop-Up
                     ctx.beginPath();
                     ctx.moveTo(v.x, v.y + 8); 
                     ctx.lineTo(v.x + 15, v.y + 15); 
@@ -575,7 +573,7 @@
                     ctx.lineTo(v.x, v.y + v.height - 4);
                     ctx.closePath();
                     ctx.fill();
-                    ctx.fillStyle = '#f8fafc'; // Lampu LED Motor
+                    ctx.fillStyle = '#f8fafc';
                     ctx.fillRect(v.x, v.y + 12, 5, 5);
 
                     drawWheel(v.x + 8, v.y + v.height - 2, 7.5, wheelAngle);
@@ -592,15 +590,13 @@
                 }
             }
 
-            // HUD Nilai Neon Minimalis
             ctx.shadowColor = 'rgba(0,0,0,0.3)';
             ctx.shadowBlur = 4;
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 17px "Plus Jakarta Sans", sans-serif';
             ctx.fillText('🏆 SKOR PERMAINAN: ' + score, 30, 38);
-            ctx.shadowBlur = 0; // reset
+            ctx.shadowBlur = 0; 
             
-            // Neon Badge Level Progresif Dinamis
             let hue = Math.max(0, 140 - (currentLevel * 9));
             ctx.fillStyle = `hsl(${hue}, 85%, 45%)`;
             ctx.beginPath();
@@ -614,7 +610,6 @@
             if (gameActive) {
                 requestAnimationFrame(loop);
             } else {
-                // Game Over Overlay Transparan Gelap
                 ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
