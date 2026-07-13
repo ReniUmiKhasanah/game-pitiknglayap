@@ -5,109 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tugas Game - Pitik Nglayap Nyebrang Jalan</title>
     <style>
+        /* Modern Reset & Base Styling */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: #0f172a; /* Slate Dark Background */
+            color: #f8fafc;
             line-height: 1.6;
+            padding-bottom: 40px;
         }
 
+        /* Glassmorphism Header */
         header {
-            background: linear-gradient(135deg, #FF9800, #E65100);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
             text-align: center;
-            padding: 35px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 40px 20px;
+            box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.3);
+            border-bottom: 4px solid #b45309;
         }
 
         header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
         }
 
         .container {
-            max-width: 850px;
-            margin: 25px auto;
+            max-width: 900px;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
-        /* Styling Game Canvas */
+        /* Game Arena Container */
         #game-container {
             text-align: center;
-            background: #2b2b2b;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: #1e293b;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            border: 1px solid #334155;
         }
 
         canvas {
-            background: #424242; /* Aspal Jalan */
+            background: #334155; /* Lapisan Aspal */
             display: block;
             margin: 0 auto;
-            border-radius: 8px;
+            border-radius: 12px;
             max-width: 100%;
-            border: 4px solid #fff;
+            border: 4px solid #475569;
+            box-shadow: inset 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .btn-instruction {
-            margin-top: 15px;
-            color: #e0e0e0;
+            margin-top: 18px;
+            color: #94a3b8;
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            font-weight: 500;
+            background: #0f172a;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #334155;
         }
 
+        .btn-instruction strong {
+            color: #fbbf24;
+        }
+
+        /* Elegant Card Info */
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 16px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #334155;
         }
 
         h2 {
-            color: #E65100;
-            border-bottom: 2px solid #FF9800;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 12px;
         }
 
         p {
             margin-bottom: 15px;
+            color: #cbd5e1;
             text-align: justify;
+            font-size: 1rem;
         }
 
         ul {
             margin-left: 20px;
             margin-bottom: 15px;
+            color: #cbd5e1;
         }
 
         li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .highlight-box {
-            background-color: #fff3e0;
-            border-left: 4px solid #E65100;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+            background-color: rgba(245, 158, 11, 0.06);
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .highlight-box strong {
+            color: #fbbf24;
+            display: block;
+            margin-bottom: 10px;
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            color: #777;
+            padding: 30px;
+            color: #64748b;
             font-size: 0.9rem;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 40px;
+            border-top: 1px solid #1e293b;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -122,8 +161,8 @@
 
         <!-- LAYER GAMEPLAY INTERAKTIF -->
         <div id="game-container">
-            <canvas id="gameCanvas" width="700" height="300"></canvas>
-            <div class="btn-instruction">Tekan <strong>TOMBOL SPASI</strong> atau <strong>KLIK/TAP AREA GAME</strong> untuk Melompat Menyebrang Jalan</div>
+            <canvas id="gameCanvas" width="700" height="320"></canvas>
+            <div class="btn-instruction">Tekan <strong>TOMBOL SPASI</strong> atau <strong>KLIK AREA GAME</strong> untuk Melompat Menyebrang Jalan</div>
         </div>
 
         <!-- DOKUMENTASI KELOMPOK -->
@@ -177,17 +216,18 @@
         let score = 0;
         let vehicleSpeed = 5;
         let spawnTimer = 0;
+        let wheelAngle = 0; // Animasi putaran roda
 
         // Properti Karakter Pitik (Ayam)
         const pitik = {
             x: 70,
-            y: 200,
+            y: 220,
             width: 35,
             height: 35,
             gravity: 0.6,
             lift: -12,
             velocity: 0,
-            groundY: 200,
+            groundY: 220,
             jump: function() {
                 if (this.y === this.groundY && gameActive) {
                     this.velocity = this.lift;
@@ -200,51 +240,59 @@
                 this.velocity += this.gravity;
                 this.y += this.velocity;
 
-                // Batasan agar tidak tembus ke bawah jalan raya
                 if (this.y > this.groundY) {
                     this.y = this.groundY;
                     this.velocity = 0;
                 }
             },
             draw: function() {
-                // Kaki Ayam (Garis Kecil)
-                ctx.strokeStyle = '#FF6F00';
-                ctx.lineWidth = 2;
+                // Kaki Ayam
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2.5;
                 ctx.beginPath();
-                ctx.moveTo(this.x + 10, this.y + 25);
-                ctx.lineTo(this.x + 10, this.y + 35);
-                ctx.moveTo(this.x + 20, this.y + 25);
-                ctx.lineTo(this.x + 20, this.y + 35);
+                ctx.moveTo(this.x + 12, this.y + 25);
+                ctx.lineTo(this.x + 12, this.y + 35);
+                ctx.moveTo(this.x + 22, this.y + 25);
+                ctx.lineTo(this.x + 22, this.y + 35);
                 ctx.stroke();
 
-                // Menggambar Badan Pitik (Lingkaran Kuning)
-                ctx.fillStyle = '#FFCA28';
+                // Badan Utama (Bulat besar)
+                ctx.fillStyle = '#fbbf24';
                 ctx.beginPath();
-                ctx.arc(this.x + 15, this.y + 18, 14, 0, Math.PI * 2);
+                ctx.arc(this.x + 16, this.y + 16, 13, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Menggambar Kepala Pitik
-                ctx.fillStyle = '#FFB300';
+                // Sayap Ayam
+                ctx.fillStyle = '#f59e0b';
                 ctx.beginPath();
-                ctx.arc(this.x + 25, this.y + 8, 9, 0, Math.PI * 2);
+                ctx.ellipse(this.x + 12, this.y + 18, 7, 4, Math.PI/6, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Menggambar Jengger Ayam (Kotak Merah di kepala)
-                ctx.fillStyle = '#E53935';
-                ctx.fillRect(this.x + 22, this.y - 5, 5, 5);
-
-                // Menggambar Paruh Ayam (Segitiga Oranye)
-                ctx.fillStyle = '#F57C00';
+                // Kepala
+                ctx.fillStyle = '#fbbf24';
                 ctx.beginPath();
-                ctx.moveTo(this.x + 32, this.y + 6);
-                ctx.lineTo(this.x + 40, this.y + 10);
-                ctx.lineTo(this.x + 32, this.y + 14);
+                ctx.arc(this.x + 26, this.y + 7, 8, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Menggambar Mata (Titik Hitam Kecil)
-                ctx.fillStyle = '#000000';
+                // Jengger (Merah Estetik)
+                ctx.fillStyle = '#ef4444';
                 ctx.beginPath();
-                ctx.arc(this.x + 27, this.y + 6, 2, 0, Math.PI * 2);
+                ctx.arc(this.x + 24, this.y - 3, 3, 0, Math.PI * 2);
+                ctx.arc(this.x + 28, this.y - 2, 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Paruh
+                ctx.fillStyle = '#ea580c';
+                ctx.beginPath();
+                ctx.moveTo(this.x + 33, this.y + 5);
+                ctx.lineTo(this.x + 40, this.y + 9);
+                ctx.lineTo(this.x + 33, this.y + 12);
+                ctx.fill();
+
+                // Mata
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.arc(this.x + 28, this.y + 5, 2, 0, Math.PI * 2);
                 ctx.fill();
             }
         };
@@ -252,18 +300,16 @@
         // Array Penampung Objek Kendaraan
         let vehicles = [];
         const vehicleTypes = [
-            { type: 'sedan', width: 65, height: 35, color: '#E53935' },   // Mobil Merah
-            { type: 'truck', width: 95, height: 50, color: '#1E88E5' },   // Truk Biru Logistik
-            { type: 'motor', width: 40, height: 30, color: '#43A047' }    // Motor Hijau
+            { type: 'sedan', width: 80, height: 35, color: '#ef4444' },  // Mobil Merah Sporty
+            { type: 'truck', width: 110, height: 55, color: '#3b82f6' }, // Truk Box Logistik
+            { type: 'motor', width: 45, height: 32, color: '#10b981' }   // Motor Matic Hijau
         ];
 
         function spawnVehicle() {
-            // Memilih jenis kendaraan secara acak
             let randomType = vehicleTypes[Math.floor(Math.random() * vehicleTypes.length)];
-            
             vehicles.push({
                 x: canvas.width,
-                y: 235 - randomType.height,
+                y: 255 - randomType.height,
                 width: randomType.width,
                 height: randomType.height,
                 color: randomType.color,
@@ -272,36 +318,67 @@
         }
 
         function drawRoad() {
-            // Marka Jalan Putih Putus-putus di tengah jalan raya
-            ctx.strokeStyle = '#FFFFFF';
+            // Garis Pembatas Atas Aspal
+            ctx.fillStyle = '#475569';
+            ctx.fillRect(0, 0, canvas.width, 100);
+
+            // Marka Jalan Tengah Putih Putus-putus
+            ctx.strokeStyle = '#cbd5e1';
             ctx.lineWidth = 4;
-            ctx.setLineDash([20, 15]); // Membuat pola putus-putus
+            ctx.setLineDash([30, 20]);
             ctx.beginPath();
-            ctx.moveTo(0, 140);
-            ctx.lineTo(canvas.width, 140);
+            ctx.moveTo(0, 170);
+            ctx.lineTo(canvas.width, 170);
             ctx.stroke();
-            ctx.setLineDash([]); // Reset pola
+            ctx.setLineDash([]);
 
-            // Garis Marka Pinggir Jalan Kuning Kontinu
-            ctx.fillStyle = '#FFD54F';
-            ctx.fillRect(0, 230, canvas.width, 5);
+            // Garis Marka Pinggir Kuning Kontinu
+            ctx.fillStyle = '#f59e0b';
+            ctx.fillRect(0, 250, canvas.width, 5);
 
-            // Menggambar Bahu Jalan / Trotoar Rumput Hijau bawah
-            ctx.fillStyle = '#4CAF50';
-            ctx.fillRect(0, 235, canvas.width, 65);
+            // Trotoar Rumput Hijau bawah
+            ctx.fillStyle = '#10b981';
+            ctx.fillRect(0, 255, canvas.width, 65);
         }
 
-        // Fungsi Deteksi Tabrakan Persegi
+        // Fungsi bantu menggambar roda berputar lengkap dengan velg jari-jari
+        function drawWheel(x, y, radius, angle) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+
+            // Ban Luar (Hitam Pekat)
+            ctx.fillStyle = '#1e293b';
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Velg Dalam (Abu-abu terang)
+            ctx.fillStyle = '#94a3b8';
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Garis Spoke / Jari-jari roda agar efek putaran terlihat nyata
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-radius, 0); ctx.lineTo(radius, 0);
+            ctx.moveTo(0, -radius); ctx.lineTo(0, radius);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
         function checkCollision(rect1, rect2) {
-            const paddingX = 4;
-            const paddingY = 2;
-            return rect1.x < rect2.x + rect2.width - paddingX &&
-                   rect1.x + rect1.width > rect2.x + paddingX &&
-                   rect1.y < rect2.y + rect2.height - paddingY &&
-                   rect1.y + rect1.height > rect2.y + paddingY;
+            const pX = 5;
+            const pY = 3;
+            return rect1.x < rect2.x + rect2.width - pX &&
+                   rect1.x + rect1.width > rect2.x + pX &&
+                   rect1.y < rect2.y + rect2.height - pY &&
+                   rect1.y + rect1.height > rect2.y + pY;
         }
 
-        // Fungsi Reset Status Permainan
         function resetGame() {
             vehicles = [];
             score = 0;
@@ -310,104 +387,156 @@
             loop();
         }
 
-        // Engine Utama Game Loop
         function loop() {
             if (!gameActive) return;
 
-            // Clear frame sebelumnya
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Menggambar Jalan Raya beserta markanya
             drawRoad();
 
-            // Perbarui Posisi Fisika & Gambar Karakter Ayam
             pitik.update();
             pitik.draw();
 
-            // Mekanisme Pengaturan Waktu Spawning Kendaraan
+            // Update rotasi roda (berputar berlawanan arah laju mobil)
+            wheelAngle -= 0.15;
+
             spawnTimer++;
-            if (spawnTimer > Math.random() * (130 - 85) + 85) {
+            if (spawnTimer > Math.random() * (120 - 80) + 80) {
                 spawnVehicle();
                 spawnTimer = 0;
             }
 
-            // Memproses Setiap Kendaraan di dalam Array
             for (let i = vehicles.length - 1; i >= 0; i--) {
-                vehicles[i].x -= vehicleSpeed;
+                let v = vehicles[i];
+                v.x -= vehicleSpeed;
 
-                // Menggambar Body Utama Kendaraan
-                ctx.fillStyle = vehicles[i].color;
-                ctx.fillRect(vehicles[i].x, vehicles[i].y, vehicles[i].width, vehicles[i].height);
+                // --- PROSES RENDERING VEHICLE AESTHETIC (Bukan kotak polos) ---
+                ctx.fillStyle = v.color;
 
-                // Menggambar Variasi Detail Atap Kendaraan (Bentuk Khas Mobil/Truk)
-                if (vehicles[i].type === 'sedan') {
-                    ctx.fillStyle = '#FFFFFF'; // Kaca jendela
-                    ctx.fillRect(vehicles[i].x + 15, vehicles[i].y + 5, 30, 12);
-                } else if (vehicles[i].type === 'truck') {
-                    ctx.fillStyle = '#37474F'; // Kaca depan Truk Kepala
-                    ctx.fillRect(vehicles[i].x + 10, vehicles[i].y + 5, 20, 15);
-                    ctx.fillStyle = '#B0BEC5';
-                    ctx.fillRect(vehicles[i].x + 35, vehicles[i].y, 5, vehicles[i].height);
+                if (v.type === 'sedan') {
+                    // Body Bawah
+                    ctx.fillRect(v.x, v.y + 12, v.width, v.height - 12);
+                    // Atap Melengkung Sleek
+                    ctx.beginPath();
+                    ctx.moveTo(v.x + 15, v.y + 12);
+                    ctx.lineTo(v.x + 30, v.y);
+                    ctx.lineTo(v.x + 60, v.y);
+                    ctx.lineTo(v.x + 72, v.y + 12);
+                    ctx.fill();
+
+                    // Kaca Jendela Depan & Belakang (Cyan Transparan)
+                    ctx.fillStyle = 'rgba(14, 165, 233, 0.6)';
+                    ctx.beginPath();
+                    ctx.moveTo(v.x + 32, v.y + 3);
+                    ctx.lineTo(v.x + 56, v.y + 3);
+                    ctx.lineTo(v.x + 64, v.y + 12);
+                    ctx.lineTo(v.x + 24, v.y + 12);
+                    ctx.fill();
+
+                    // Lampu Kuning (Menghadap Kiri)
+                    ctx.fillStyle = '#fde047';
+                    ctx.fillRect(v.x, v.y + 16, 5, 6);
+
+                    // Menggambar Roda Berputar Estetis
+                    drawWheel(v.x + 18, v.y + v.height - 2, 8, wheelAngle);
+                    drawWheel(v.x + v.width - 18, v.y + v.height - 2, 8, wheelAngle);
+
+                } else if (v.type === 'truck') {
+                    // Box Muatan Belakang
+                    ctx.fillStyle = '#e2e8f0';
+                    ctx.fillRect(v.x + 35, v.y, v.width - 35, v.height - 5);
+                    // Garis tekstur pada Box Truk
+                    ctx.strokeStyle = '#94a3b8';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(v.x + 40, v.y + 5, v.width - 45, v.height - 15);
+
+                    // Kepala Truk Depan
+                    ctx.fillStyle = v.color;
+                    ctx.fillRect(v.x, v.y + 12, 35, v.height - 17);
+                    
+                    // Kaca Depan Supir
+                    ctx.fillStyle = 'rgba(14, 165, 233, 0.7)';
+                    ctx.fillRect(v.x + 4, v.y + 16, 16, 12);
+
+                    // Bemper Bawah Truk
+                    ctx.fillStyle = '#475569';
+                    ctx.fillRect(v.x, v.y + v.height - 8, v.width, 4);
+
+                    // Lampu Depan Truk Besar
+                    ctx.fillStyle = '#fde047';
+                    ctx.fillRect(v.x, v.y + v.height - 15, 4, 6);
+
+                    // Roda Truk (Ganda di Belakang)
+                    drawWheel(v.x + 16, v.y + v.height - 4, 10, wheelAngle);
+                    drawWheel(v.x + v.width - 38, v.y + v.height - 4, 10, wheelAngle);
+                    drawWheel(v.x + v.width - 16, v.y + v.height - 4, 10, wheelAngle);
+
+                } else if (v.type === 'motor') {
+                    // Struktur Body Motor Matic modern
+                    ctx.beginPath();
+                    ctx.moveTo(v.x, v.y + 5); // Stang depan
+                    ctx.lineTo(v.x + 12, v.y + 15); // Sayap tameng depan
+                    ctx.lineTo(v.x + 35, v.y + 15); // Jok pengendara
+                    ctx.lineTo(v.x + v.width, v.y + v.height - 10);
+                    ctx.lineTo(v.x, v.y + v.height - 5);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Jok Hitam terpisah
+                    ctx.fillStyle = '#1e293b';
+                    ctx.fillRect(v.x + 16, v.y + 11, 18, 5);
+
+                    // Knalpot Chrome Perak di samping belakang
+                    ctx.fillStyle = '#cbd5e1';
+                    ctx.fillRect(v.x + 25, v.y + v.height - 10, 16, 4);
+
+                    // Roda Ringan Motor
+                    drawWheel(v.x + 8, v.y + v.height - 2, 7, wheelAngle);
+                    drawWheel(v.x + v.width - 8, v.y + v.height - 2, 7, wheelAngle);
                 }
 
-                // Menggambar Roda Kendaraan (Lingkaran Hitam dengan Velg Abu-abu)
-                ctx.fillStyle = '#1A1A1A';
-                let wheelY = 235 - 6; 
-                
-                // Roda depan
-                ctx.beginPath();
-                ctx.arc(vehicles[i].x + 15, wheelY, 7, 0, Math.PI * 2);
-                ctx.fill();
-                // Roda belakang
-                ctx.beginPath();
-                ctx.arc(vehicles[i].x + vehicles[i].width - 15, wheelY, 7, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Cek Tabrakan antara Pitik dan Kendaraan
-                if (checkCollision(pitik, vehicles[i])) {
+                // Cek Tabrakan
+                if (checkCollision(pitik, v)) {
                     gameActive = false;
                 }
 
-                // Jika Kendaraan Berhasil Dilewati / Dihindari
-                if (vehicles[i].x + vehicles[i].width < 0) {
-                    vehicles.splice(i, 1); 
+                // Handler ketika lolos menghindari kendaraan
+                if (v.x + v.width < 0) {
+                    vehicles.splice(i, 1);
                     score++;
-                    
                     if (score % 5 === 0) {
-                        vehicleSpeed += 0.8; 
+                        vehicleSpeed += 0.8;
                     }
                 }
             }
 
-            // Menampilkan Indikator Skor Lalu Lintas
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 20px sans-serif';
-            ctx.fillText('Kendaraan Dilewati: ' + score, 20, 35);
+            // HUD Nilai / Skor Text Modern
+            ctx.fillStyle = '#f8fafc';
+            ctx.font = 'bold 18px "Plus Jakarta Sans", sans-serif';
+            ctx.fillText('🏆 SCORE: ' + score, 25, 40);
 
-            // Mengulang Fungsi Animasi
             if (gameActive) {
                 requestAnimationFrame(loop);
             } else {
-                // Tampilan Antarmuka Game Over (Pitik Tertabrak)
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+                // Efek overlay blur & gelap saat Game Over
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                ctx.fillStyle = '#FF3D00';
-                ctx.font = 'bold 28px sans-serif';
+                ctx.fillStyle = '#ef4444';
+                ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('PITIK TERTABRAK KENDARAAN!', canvas.width / 2, canvas.height / 2 - 10);
+                ctx.fillText('PITIK TERTABRAK KENDARAAN!', canvas.width / 2, canvas.height / 2 - 15);
                 
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '16px sans-serif';
-                ctx.fillText('Tekan tombol Spasi atau Klik Layar untuk Mengulang', canvas.width / 2, canvas.height / 2 + 30);
-                ctx.textAlign = 'left'; 
+                ctx.fillStyle = '#cbd5e1';
+                ctx.font = '500 16px "Plus Jakarta Sans", sans-serif';
+                ctx.fillText('Tekan tombol SPASI / Klik Layar untuk Mengulang Kembali', canvas.width / 2, canvas.height / 2 + 25);
+                ctx.textAlign = 'left';
             }
         }
 
-        // Konfigurasi Event Listener Pengendali Input Kontrol
+        // Pengendali Input Kontrol Keyboard & Mouse Click
         window.addEventListener('keydown', function(e) {
             if (e.code === 'Space') {
-                e.preventDefault(); 
+                e.preventDefault();
                 pitik.jump();
             }
         });
@@ -416,7 +545,7 @@
             pitik.jump();
         });
 
-        // Menjalankan Game Loop Pertama Kali
+        // Trigger inisialisasi game pertama kali
         loop();
     </script>
 </body>
