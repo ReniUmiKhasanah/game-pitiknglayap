@@ -1,557 +1,1011 @@
+<!-- STREAMING_CHUNK: Styling layout and general look... -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Game - Pitik Nglayap Nyebrang Jalan (Endless Forest)</title>
+    <title>Pitik Nglayap - Canva Cute & Cinematic Edition</title>
     <style>
-        /* Modern Reset & Vibrant Base Styling */
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #064e3b 50%, #022c22 100%);
-            background-attachment: fixed;
-            color: #f8fafc;
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        /* Glassmorphism Header Berkilau */
-        header {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(4, 120, 87, 0.4));
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: #0c0c12;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
             color: white;
-            text-align: center;
-            padding: 50px 20px;
-            border-bottom: 1px solid rgba(52, 211, 153, 0.3);
-            box-shadow: 0 10px 30px rgba(4, 120, 87, 0.2);
+            user-select: none;
         }
 
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #34d399, #6ee7b7, #fbbf24);
+        #gameContainer {
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, #FFC107, #FF5722, #E040FB);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: shine 5s linear infinite;
         }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 500;
-            color: #a7f3d0;
-        }
-
-        .container {
-            max-width: 950px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Neon Glass Arena Container */
-        #game-container {
-            text-align: center;
-            background: rgba(30, 41, 59, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 30px;
-            border-radius: 24px;
-            margin-bottom: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            position: relative;
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         canvas {
+            border-radius: 20px;
+            border: 6px solid #2d2d3a;
+            box-shadow: 0px 30px 60px rgba(0,0,0,0.9);
             display: block;
-            margin: 0 auto;
-            border-radius: 16px;
-            max-width: 100%;
-            border: 4px solid rgba(52, 211, 153, 0.4);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.25);
+            cursor: pointer;
         }
 
-        .btn-instruction {
-            margin-top: 22px;
-            color: #cbd5e1;
-            font-size: 1rem;
-            font-weight: 500;
-            background: rgba(15, 23, 42, 0.6);
-            display: inline-block;
-            padding: 10px 24px;
+        .info-panel {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #b5b5cc;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            padding: 12px 30px;
             border-radius: 30px;
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .btn-instruction strong {
-            color: #fbbf24;
-            text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Projek Game: Pitik Nglayap (Endless Forest)</h1>
-        <p>Tugas Besar Pemrograman Perangkat Lunak & Gim (RPL)</p>
-    </header>
-
-    <div class="container">
-        <div id="game-container">
-            <canvas id="gameCanvas" width="750" height="360"></canvas>
-            <div class="btn-instruction">Tekan <strong>TOMBOL SPASI</strong> atau <strong>KLIK AREA GAME</strong> untuk Melompat Menyebrang Jalan</div>
-        </div>
+<div id="gameContainer">
+    <h1>🐔 PITIK NGLAYAP</h1>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <div class="info-panel">
+        🎮 <strong>Kontrol:</strong> Tekan Tombol <strong>SPASI</strong>, <strong>KLIK MOUSE</strong>, atau <strong>TAP LAYAR</strong> untuk melompat.
     </div>
+</div>
 
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
+<script>
+    /* STREAMING_CHUNK: Game settings and level definitions... */
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-        let gameActive = true;
-        let score = 0;
-        let currentLevel = 1;
-        let baseSpeed = 4.8;
-        let vehicleSpeed = 4.8;
-        let spawnTimer = 0;
-        let wheelAngle = 0; 
+    // Tema per level dengan ilustrasi estetik ala Canva
+    const themes = {
+        1: { // Pagi Ceria (Green Field)
+            skyTop: "#4fa3e3",
+            skyBottom: "#bceef2",
+            hillBack: "#2e7d32",
+            hillFront: "#388e3c",
+            ground: "#1b5e20",
+            grassColor1: "#4caf50",
+            grassColor2: "#81c784",
+            hasStars: false,
+            hasFireflies: false,
+            hasSun: true,
+            cloudAlpha: 0.65
+        },
+        2: { // Sore Senja (Warm Autumn Sunset)
+            skyTop: "#e65100",
+            skyBottom: "#ffb74d",
+            hillBack: "#bf360c",
+            hillFront: "#d84315",
+            ground: "#8d6e63",
+            grassColor1: "#ff7043",
+            grassColor2: "#ffb74d",
+            hasStars: false,
+            hasFireflies: false,
+            hasSun: true, // Sunset sun
+            cloudAlpha: 0.5
+        },
+        3: { // Malam Berbintang (Midnight Cozy Forest)
+            skyTop: "#080f26",
+            skyBottom: "#1b2541",
+            hillBack: "#091f0d",
+            hillFront: "#113016",
+            ground: "#08160d",
+            grassColor1: "#2e7d32",
+            grassColor2: "#1b5e20",
+            hasStars: true,
+            hasFireflies: true,
+            hasSun: false,
+            cloudAlpha: 0.2
+        },
+        4: { // Dimensi Cyber/Neon (Synthwave Pink Space)
+            skyTop: "#250040",
+            skyBottom: "#b000e6",
+            hillBack: "#3a005c",
+            hillFront: "#5e0080",
+            ground: "#140029",
+            grassColor1: "#00e5ff",
+            grassColor2: "#ff007f",
+            hasStars: true,
+            hasFireflies: false,
+            hasSun: false,
+            cloudAlpha: 0.3
+        }
+    };
 
-        // Efek Atmosfer Daun Berguguran
-        let leaves = [];
-        for(let i=0; i<15; i++) {
-            leaves.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * 140,
+    /* STREAMING_CHUNK: Character and game physics setup... */
+    // Konfigurasi Karakter Pitik Super Gemoy
+    const pitik = {
+        x: 120,
+        y: 310,
+        width: 46,
+        height: 46,
+        velocityY: 0,
+        gravity: 0.6,
+        jumpStrength: -12.5,
+        isJumping: false,
+        wingAngle: 0,
+        bobOffset: 0,
+        squishY: 1, // Untuk efek melenting saat lompat/mendarat
+        squishX: 1
+    };
+
+    // Konfigurasi Rintangan (Sekarang dinamis berganti jenis!)
+    const obstacle = {
+        x: 800,
+        y: 295,
+        width: 40,
+        height: 55,
+        speed: 7,
+        type: "batu", // "batu", "motor", atau "truk"
+        wheelRotation: 0
+    };
+
+    // Variabel Game Utama
+    let score = 0;
+    let highscore = localStorage.getItem("pitik_highscore") || 0;
+    let level = 1;
+    let gameOver = false;
+    let stars = [];
+    let clouds = [];
+    let fireflies = [];
+    let items = []; // Grains/Gabah & Worms
+    let floatingTexts = []; // Teks popup melayang "+5", "+15"
+    let particleEffects = []; // Ledakan bintang/partikel saat ambil item
+
+    /* STREAMING_CHUNK: Initializing aesthetic background elements... */
+    // Inisialisasi Bintang Berkelip
+    for (let i = 0; i < 50; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * 180,
+            size: Math.random() * 2 + 0.5,
+            alpha: Math.random()
+        });
+    }
+
+    // Inisialisasi Awan Bergerak
+    for (let i = 0; i < 4; i++) {
+        clouds.push({
+            x: Math.random() * canvas.width,
+            y: 25 + Math.random() * 55,
+            size: Math.random() * 25 + 20,
+            speed: Math.random() * 0.15 + 0.08
+        });
+    }
+
+    // Inisialisasi Kunang-kunang untuk Malam Hari (Level 3)
+    for (let i = 0; i < 15; i++) {
+        fireflies.push({
+            x: Math.random() * canvas.width,
+            y: 240 + Math.random() * 110,
+            size: Math.random() * 2.5 + 1.5,
+            angle: Math.random() * Math.PI * 2,
+            speed: Math.random() * 0.4 + 0.2
+        });
+    }
+
+    // Event Listeners (Keyboard, Touch, and Mouse Click)
+    window.addEventListener("keydown", function(e) {
+        if (e.code === "Space") {
+            e.preventDefault();
+            lompat();
+        }
+    });
+
+    canvas.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        lompat();
+    });
+
+    canvas.addEventListener("mousedown", function(e) {
+        e.preventDefault();
+        lompat();
+    });
+
+    function lompat() {
+        if (!pitik.isJumping && !gameOver) {
+            pitik.velocityY = pitik.jumpStrength;
+            pitik.isJumping = true;
+            // Efek meregang ke atas saat mulai melompat
+            pitik.squishY = 1.25;
+            pitik.squishX = 0.8;
+        }
+        if (gameOver) {
+            resetGame();
+        }
+    }
+
+    function resetGame() {
+        gameOver = false;
+        score = 0;
+        level = 1;
+        obstacle.speed = 7;
+        obstacle.x = canvas.width;
+        chooseNewObstacle();
+        pitik.y = 310;
+        pitik.velocityY = 0;
+        pitik.isJumping = false;
+        items = [];
+        floatingTexts = [];
+        particleEffects = [];
+        update();
+    }
+
+    // Mengganti rintangan secara acak dengan batas aman
+    function chooseNewObstacle() {
+        const r = Math.random();
+        if (r < 0.45) {
+            obstacle.type = "batu";
+            obstacle.width = 32;
+            obstacle.height = 42;
+            obstacle.y = 308; // Menapak pas di tanah
+        } else if (r < 0.75) {
+            obstacle.type = "motor";
+            obstacle.width = 46;
+            obstacle.height = 36;
+            obstacle.y = 314; // Lebih rendah, mudah dilompati
+        } else {
+            obstacle.type = "truk";
+            obstacle.width = 62; // Truk diperkecil agar adil dan seru
+            obstacle.height = 44; 
+            obstacle.y = 306;
+        }
+    }
+
+    // Spawn item points (Gabah / Cacing) secara berkala
+    function spawnItem() {
+        if (items.length < 2 && Math.random() < 0.015) {
+            const isWorm = Math.random() < 0.25; // 25% peluang muncul cacing (poin besar)
+            items.push({
+                x: canvas.width + 50,
+                y: 190 + Math.random() * 60, // Melayang pas di ketinggian lompatan pitik
+                width: 18,
+                height: 18,
+                type: isWorm ? "cacing" : "gabah",
+                bob: Math.random() * 100
+            });
+        }
+    }
+
+    // Trigger partikel bintang saat ayam mengambil point
+    function createSpark(x, y, color) {
+        for (let i = 0; i < 8; i++) {
+            particleEffects.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 6,
+                vy: (Math.random() - 0.5) * 6 - 2,
                 size: Math.random() * 4 + 2,
-                speed: Math.random() * 0.5 + 0.3,
-                wobble: Math.random() * 2
+                color: color,
+                alpha: 1,
+                decay: Math.random() * 0.04 + 0.02
             });
         }
+    }
 
-        const pitik = {
-            x: 80,
-            y: 250, 
-            width: 36,
-            height: 36,
-            gravity: 0.65,
-            lift: -12.5,
-            velocity: 0,
-            groundY: 250,
-            jump: function() {
-                if (this.y === this.groundY && gameActive) {
-                    this.velocity = this.lift;
-                }
-                if (!gameActive) {
-                    resetGame();
-                }
-            },
-            update: function() {
-                this.velocity += this.gravity;
-                this.y += this.velocity;
+    /* STREAMING_CHUNK: Parallax backgrounds and cloud functions... */
+    // Menggambar Lapisan Bukit Parallax
+    function drawHills(theme) {
+        ctx.save();
+        
+        // Bukit Jauh (Bergerak lambat)
+        ctx.fillStyle = theme.hillBack;
+        ctx.beginPath();
+        ctx.moveTo(0, 350);
+        ctx.quadraticCurveTo(220, 210, 440, 350);
+        ctx.quadraticCurveTo(620, 190, 800, 350);
+        ctx.lineTo(800, 350);
+        ctx.lineTo(0, 350);
+        ctx.fill();
 
-                if (this.y > this.groundY) {
-                    this.y = this.groundY;
-                    this.velocity = 0;
-                }
-            },
-            draw: function() {
-                // Kaki Ayam Emas
-                ctx.strokeStyle = '#f59e0b';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(this.x + 12, this.y + 25);
-                ctx.lineTo(this.x + 12, this.y + 36);
-                ctx.moveTo(this.x + 24, this.y + 25);
-                ctx.lineTo(this.x + 24, this.y + 36);
-                ctx.stroke();
+        // Bukit Dekat (Lebih kontras)
+        ctx.fillStyle = theme.hillFront;
+        ctx.beginPath();
+        ctx.moveTo(0, 350);
+        ctx.quadraticCurveTo(140, 270, 280, 350);
+        ctx.quadraticCurveTo(540, 245, 800, 350);
+        ctx.lineTo(800, 350);
+        ctx.lineTo(0, 350);
+        ctx.fill();
 
-                // Bulu Ekor Belakang
-                ctx.fillStyle = '#d97706';
-                ctx.beginPath();
-                ctx.moveTo(this.x + 4, this.y + 16);
-                ctx.quadraticCurveTo(this.x - 6, this.y + 2, this.x + 6, this.y + 8);
-                ctx.fill();
+        ctx.restore();
+    }
 
-                // Badan Utama
-                ctx.fillStyle = '#fbbf24';
-                ctx.beginPath();
-                ctx.arc(this.x + 16, this.y + 16, 14, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Sayap Ayam
-                ctx.fillStyle = '#f59e0b';
-                ctx.beginPath();
-                ctx.ellipse(this.x + 12, this.y + 18, 8, 5, Math.PI/6, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Leher & Kepala
-                ctx.fillStyle = '#fbbf24';
-                ctx.beginPath();
-                ctx.arc(this.x + 28, this.y + 6, 9, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Jengger Merah Menyala
-                ctx.fillStyle = '#dc2626';
-                ctx.beginPath();
-                ctx.arc(this.x + 25, this.y - 4, 3.5, 0, Math.PI * 2);
-                ctx.arc(this.x + 30, this.y - 3, 3.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Paruh Oranye
-                ctx.fillStyle = '#f97316';
-                ctx.beginPath();
-                ctx.moveTo(this.x + 35, this.y + 4);
-                ctx.lineTo(this.x + 43, this.y + 8);
-                ctx.lineTo(this.x + 35, this.y + 12);
-                ctx.fill();
-
-                // Mata
-                ctx.fillStyle = '#0f172a';
-                ctx.beginPath();
-                ctx.arc(this.x + 30, this.y + 4, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        };
-
-        let vehicles = [];
-        const vehicleTypes = [
-            { type: 'sedan', width: 85, height: 35, color: '#ff0055' },
-            { type: 'truck', width: 115, height: 55, color: '#00b4d8' },
-            { type: 'motor', width: 48, height: 32, color: '#ffb703' }
-        ];
-
-        const trees = [
-            { x: 40, size: 55 }, { x: 130, size: 75 }, { x: 240, size: 50 },
-            { x: 340, size: 70 }, { x: 470, size: 80 }, { x: 590, size: 55 },
-            { x: 700, size: 65 }
-        ];
-
-        function spawnVehicle() {
-            let randomType = vehicleTypes[Math.floor(Math.random() * vehicleTypes.length)];
-            vehicles.push({
-                x: canvas.width,
-                y: 286 - randomType.height,
-                width: randomType.width,
-                height: randomType.height,
-                color: randomType.color,
-                type: randomType.type,
-                speed: vehicleSpeed
-            });
+    // Menggambar Matahari atau Sunset
+    function drawSun(theme) {
+        if (!theme.hasSun) return;
+        ctx.save();
+        let sunGradient = ctx.createRadialGradient(680, 180, 5, 680, 180, level === 1 ? 70 : 100);
+        
+        if (level === 1) { // Matahari Pagi
+            sunGradient.addColorStop(0, "#FFFde0");
+            sunGradient.addColorStop(0.3, "rgba(255, 253, 200, 0.4)");
+            sunGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        } else { // Senja Orange
+            sunGradient.addColorStop(0, "#FF6B6B");
+            sunGradient.addColorStop(0.4, "rgba(255, 139, 65, 0.3)");
+            sunGradient.addColorStop(1, "rgba(255, 107, 107, 0)");
         }
+        ctx.fillStyle = sunGradient;
+        ctx.beginPath();
+        ctx.arc(680, 180, level === 1 ? 60 : 90, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
 
-        function drawEnvironment() {
-            // 1. Langit Senja Estetik (Gradasi Linear)
-            let skyGrad = ctx.createLinearGradient(0, 0, 0, 150);
-            skyGrad.addColorStop(0, '#fdba74');
-            skyGrad.addColorStop(0.5, '#f472b6');
-            skyGrad.addColorStop(1, '#38bdf8');
-            ctx.fillStyle = skyGrad;
-            ctx.fillRect(0, 0, canvas.width, 150);
+    // Menggambar Awan Vektor Minimalis
+    function drawClouds(theme) {
+        ctx.save();
+        ctx.fillStyle = `rgba(255, 255, 255, ${theme.cloudAlpha})`;
+        clouds.forEach(cloud => {
+            if (!gameOver) cloud.x -= cloud.speed;
+            if (cloud.x < -150) cloud.x = canvas.width + 50;
 
-            // 2. Menggambar Pohon Hutan Pinus
-            trees.forEach(tree => {
-                ctx.fillStyle = '#065f46'; 
-                ctx.beginPath();
-                ctx.moveTo(tree.x, 150 - tree.size);
-                ctx.lineTo(tree.x - (tree.size * 0.45), 150);
-                ctx.lineTo(tree.x + (tree.size * 0.45), 150);
-                ctx.fill();
-
-                ctx.fillStyle = '#059669'; 
-                ctx.beginPath();
-                ctx.moveTo(tree.x, 150 - (tree.size * 0.75));
-                ctx.lineTo(tree.x - (tree.size * 0.35), 150);
-                ctx.lineTo(tree.x + (tree.size * 0.35), 150);
-                ctx.fill();
-            });
-
-            // Animasi Daun Berguguran
-            ctx.fillStyle = 'rgba(52, 211, 153, 0.6)';
-            leaves.forEach(leaf => {
-                leaf.y += leaf.speed;
-                leaf.x += Math.sin(leaf.y * 0.05) * 0.3;
-                if(leaf.y > 140) leaf.y = 0;
-                ctx.beginPath();
-                ctx.arc(leaf.x, leaf.y, leaf.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
-            // 3. Semak Belukar Pembatas Atas Jalan
-            ctx.fillStyle = '#10b981';
-            ctx.fillRect(0, 140, canvas.width, 20);
-            
-            ctx.fillStyle = '#34d399';
-            for(let i = -10; i < canvas.width + 20; i += 40) {
-                ctx.beginPath();
-                ctx.arc(i + 15, 145, 10, 0, Math.PI, true);
-                ctx.fill();
-            }
-
-            // 4. Badan Aspal Jalan Raya Modern
-            ctx.fillStyle = '#334155';
-            ctx.fillRect(0, 160, canvas.width, 125);
-
-            // Marka Jalan Tengah Putih Bersih
-            ctx.strokeStyle = '#f8fafc';
-            ctx.lineWidth = 4;
-            ctx.setLineDash([30, 20]);
             ctx.beginPath();
-            ctx.moveTo(0, 220);
-            ctx.lineTo(canvas.width, 220);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Pembatas Garis Kuning Neon
-            ctx.fillStyle = '#fbbf24';
-            ctx.fillRect(0, 280, canvas.width, 5);
-            
-            // Base layer tanah/rumput tua gelap
-            let grassGrad = ctx.createLinearGradient(0, 285, 0, canvas.height);
-            grassGrad.addColorStop(0, '#059669');
-            grassGrad.addColorStop(1, '#064e3b');
-            ctx.fillStyle = grassGrad;
-            ctx.fillRect(0, 285, canvas.width, 75);
-
-            // LAYER RUMPUT 1: Rimbun Belakang (Warna Hijau Mint Cerah)
-            ctx.fillStyle = '#10b981';
-            for (let i = -5; i < canvas.width + 10; i += 8) {
-                let grassHeight = 16 + Math.sin(i * 0.08) * 6; 
-                ctx.beginPath();
-                ctx.moveTo(i, 285);
-                ctx.lineTo(i + 5, 285 - grassHeight);
-                ctx.lineTo(i + 10, 285);
-                ctx.fill();
-            }
-
-            // LAYER RUMPUT 2: Rimbun Depan (Warna Hijau Lebih Muda/Pastel)
-            ctx.fillStyle = '#34d399';
-            for (let i = -2; i < canvas.width + 10; i += 12) {
-                let grassHeight = 12 + Math.cos(i * 0.1) * 4;
-                ctx.beginPath();
-                ctx.moveTo(i, 287);
-                ctx.lineTo(i + 6, 287 - grassHeight);
-                ctx.lineTo(i + 12, 287);
-                ctx.fill();
-            }
-
-            // LAYER RUMPUT 3: Variasi Rumput Liar Panjang Berkelompok
-            ctx.fillStyle = '#6ee7b7';
-            for (let i = 20; i < canvas.width; i += 60) {
-                ctx.beginPath();
-                ctx.moveTo(i, 310); ctx.lineTo(i - 4, 292); ctx.lineTo(i + 2, 310);
-                ctx.moveTo(i + 2, 310); ctx.lineTo(i + 5, 288); ctx.lineTo(i + 8, 310);
-                ctx.fill();
-            }
-
-            // AKSEN TAMBAHAN: Bunga Liar Estetik Kuning Putih Bertebaran
-            for (let i = 40; i < canvas.width; i += 95) {
-                let flowerY = 315 + Math.sin(i) * 12;
-                
-                // Kelopak Putih
-                ctx.fillStyle = '#ffffff';
-                ctx.beginPath();
-                ctx.arc(i - 3, flowerY, 2.5, 0, Math.PI * 2);
-                ctx.arc(i + 3, flowerY, 2.5, 0, Math.PI * 2);
-                ctx.arc(i, flowerY - 3, 2.5, 0, Math.PI * 2);
-                ctx.arc(i, flowerY + 3, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Putik Tengah Oranye/Kuning
-                ctx.fillStyle = '#fbbf24';
-                ctx.beginPath();
-                ctx.arc(i, flowerY, 2.2, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function drawWheel(x, y, radius, angle) {
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.rotate(angle);
-            ctx.fillStyle = '#0f172a';
-            ctx.beginPath();
-            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
+            ctx.arc(cloud.x + cloud.size * 0.6, cloud.y - cloud.size * 0.2, cloud.size * 0.8, 0, Math.PI * 2);
+            ctx.arc(cloud.x + cloud.size * 1.2, cloud.y, cloud.size * 0.7, 0, Math.PI * 2);
             ctx.fill();
-            ctx.fillStyle = '#e2e8f0';
-            ctx.beginPath();
-            ctx.arc(0, 0, radius * 0.45, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.strokeStyle = '#94a3b8';
+        });
+        ctx.restore();
+    }
+
+    /* STREAMING_CHUNK: Grass rendering... */
+    // Menggambar Rerumputan Rimbun Bertekstur Tebal & Lembut
+    function drawLushGrass(theme) {
+        ctx.save();
+        
+        // Lapisan tanah dasar
+        ctx.fillStyle = theme.ground;
+        ctx.fillRect(0, 350, canvas.width, 50);
+
+        // Grid retro neon menyala khusus untuk Level 4 (Dimensi Cyber)
+        if (level === 4) {
+            ctx.strokeStyle = "rgba(0, 229, 255, 0.4)";
             ctx.lineWidth = 2;
+            for (let i = 0; i <= canvas.width; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(i, 350);
+                ctx.lineTo(i - 80, canvas.height);
+                ctx.stroke();
+            }
+            for (let j = 350; j <= canvas.height; j += 15) {
+                ctx.beginPath();
+                ctx.moveTo(0, j);
+                ctx.lineTo(canvas.width, j);
+                ctx.stroke();
+            }
+        }
+
+        const grassY = 352;
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+
+        // Gambar helai-helai rumput rimbun dengan dua lapis warna
+        for (let x = 0; x < canvas.width; x += 5) {
+            let h1 = 14 + Math.sin(x * 0.4) * 6; 
+            let h2 = 9 + Math.cos(x * 0.25) * 5;
+
+            // Lapisan Rumput Belakang (Gelap)
+            ctx.strokeStyle = theme.grassColor1;
             ctx.beginPath();
-            ctx.moveTo(-radius, 0); ctx.lineTo(radius, 0);
-            ctx.moveTo(0, -radius); ctx.lineTo(0, radius);
+            ctx.moveTo(x, grassY);
+            ctx.quadraticCurveTo(x - 2, grassY - h1 * 0.5, x - 3, grassY - h1);
             ctx.stroke();
+
+            // Lapisan Rumput Depan (Terang)
+            ctx.strokeStyle = theme.grassColor2;
+            ctx.beginPath();
+            ctx.moveTo(x + 2, grassY);
+            ctx.quadraticCurveTo(x + 3, grassY - h2 * 0.5, x + 4, grassY - h2);
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
+
+    /* STREAMING_CHUNK: Chicken character rendering (Pitik Gemes)... */
+    // Menggambar Karakter Ayam (Pitik) Sangat Gemas
+    function drawPitik() {
+        ctx.save();
+        
+        // Efek goyang (bobbing) halus saat berjalan
+        if (!pitik.isJumping && !gameOver) {
+            pitik.bobOffset = Math.sin(Date.now() * 0.016) * 2.5;
+        } else {
+            pitik.bobOffset = 0;
+        }
+
+        // Hitung pemulihan efek melenting (squish & stretch) secara asinkronus
+        pitik.squishY += (1 - pitik.squishY) * 0.15;
+        pitik.squishX += (1 - pitik.squishX) * 0.15;
+
+        ctx.translate(pitik.x + pitik.width / 2, pitik.y + pitik.height + pitik.bobOffset);
+        ctx.scale(pitik.squishX, pitik.squishY);
+        ctx.translate(-pitik.width / 2, -pitik.height);
+
+        // Bayangan lembut bulat telur di bawah tubuh
+        if (!pitik.isJumping) {
+            ctx.fillStyle = "rgba(0,0,0,0.18)";
+            ctx.beginPath();
+            ctx.ellipse(22, 43 - pitik.bobOffset, 16 * pitik.squishX, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Bulu Ekor Gemoy (Rumbai 3 Bulu dibelakang)
+        ctx.fillStyle = "#FFB300";
+        ctx.beginPath();
+        ctx.arc(-2, 12, 6, 0, Math.PI * 2);
+        ctx.arc(-4, 19, 7, 0, Math.PI * 2);
+        ctx.arc(-1, 26, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Tubuh Utama Bulat Chubby
+        ctx.fillStyle = "#FF9800";
+        ctx.beginPath();
+        ctx.arc(22, 22, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pipi Merona Merah Muda Merona (Rosy Cheeks)
+        ctx.fillStyle = "rgba(255, 110, 110, 0.65)";
+        ctx.beginPath();
+        ctx.arc(17, 24, 5, 0, Math.PI * 2);
+        ctx.arc(31, 24, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Jengger Melengkung Lembut (Comb)
+        ctx.fillStyle = "#E53935";
+        ctx.beginPath();
+        ctx.arc(12, -2, 7, 0, Math.PI * 2);
+        ctx.arc(22, -6, 9.5, 0, Math.PI * 2);
+        ctx.arc(32, -2, 6.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Paruh Segitiga Lucu Mungil
+        ctx.fillStyle = "#FFD54F";
+        ctx.beginPath();
+        ctx.moveTo(38, 17);
+        ctx.lineTo(47, 21);
+        ctx.lineTo(38, 25);
+        ctx.closePath();
+        ctx.fill();
+
+        // Mata Besar Anime Berbinar (Pupil ganda putih)
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath();
+        ctx.arc(26, 13, 6, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.fillStyle = "#1e1e24";
+        ctx.beginPath();
+        ctx.arc(28, 13, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pantulan cahaya bintang ganda dalam mata
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath();
+        ctx.arc(29.5, 11.5, 1.5, 0, Math.PI * 2);
+        ctx.arc(26.5, 14.5, 0.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Sayap Mungil (Mengepak cepat saat lompat)
+        if (pitik.isJumping) {
+            pitik.wingAngle = Math.sin(Date.now() * 0.08) * 20;
+        } else {
+            pitik.wingAngle = Math.sin(Date.now() * 0.012) * 4;
+        }
+        ctx.save();
+        ctx.translate(10, 24);
+        ctx.rotate((pitik.wingAngle * Math.PI) / 180);
+        ctx.fillStyle = "#F57C00";
+        ctx.beginPath();
+        ctx.ellipse(-2, 0, 11, 7, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Kaki Detail Unyu Kuning
+        ctx.strokeStyle = "#FFD54F";
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(14, 38); ctx.lineTo(14, 44);
+        ctx.moveTo(14, 44); ctx.lineTo(9, 46);
+        ctx.moveTo(14, 44); ctx.lineTo(18, 46);
+
+        ctx.moveTo(24, 38); ctx.lineTo(24, 44);
+        ctx.moveTo(24, 44); ctx.lineTo(19, 46);
+        ctx.moveTo(24, 44); ctx.lineTo(28, 46);
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    /* STREAMING_CHUNK: Obstacles rendering (Rock, Motor, Truck)... */
+    // Menggambar Rintangan Unyu (Batu, Motor, Truk)
+    function drawObstacle(theme) {
+        ctx.save();
+
+        if (obstacle.type === "batu") {
+            // Rintangan 1: Batu Alami Asimetris
+            ctx.fillStyle = theme.rockColor;
+            ctx.beginPath();
+            ctx.moveTo(obstacle.x + obstacle.width * 0.2, obstacle.y);
+            ctx.lineTo(obstacle.x + obstacle.width * 0.8, obstacle.y + 3);
+            ctx.lineTo(obstacle.x + obstacle.width, obstacle.y + obstacle.height * 0.4);
+            ctx.lineTo(obstacle.x + obstacle.width * 0.95, obstacle.y + obstacle.height);
+            ctx.lineTo(obstacle.x + obstacle.width * 0.05, obstacle.y + obstacle.height);
+            ctx.lineTo(obstacle.x, obstacle.y + obstacle.height * 0.5);
+            ctx.closePath();
+            ctx.fill();
+
+            // Efek retakan dan shading
+            ctx.strokeStyle = theme.rockShadow;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(obstacle.x + obstacle.width * 0.4, obstacle.y + 6);
+            ctx.lineTo(obstacle.x + obstacle.width * 0.55, obstacle.y + obstacle.height * 0.55);
+            ctx.lineTo(obstacle.x + obstacle.width * 0.3, obstacle.y + obstacle.height * 0.85);
+            ctx.strokeStyle = "rgba(0,0,0,0.22)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+        } else if (obstacle.type === "motor") {
+            // Rintangan 2: Sepeda Motor Skuter Unyu
+            if (!gameOver) obstacle.wheelRotation += 0.25;
+
+            // Garis tubuh utama motor
+            ctx.fillStyle = "#E53935"; // bodi merah cerah
+            ctx.beginPath();
+            ctx.roundRect(obstacle.x + 5, obstacle.y + 12, obstacle.width - 10, 16, 5);
+            ctx.fill();
+
+            // Kemudi (Handlebar) & Shield depan
+            ctx.fillStyle = "#D32F2F";
+            ctx.beginPath();
+            ctx.moveTo(obstacle.x + 8, obstacle.y + 16);
+            ctx.lineTo(obstacle.x + 5, obstacle.y + 4);
+            ctx.lineTo(obstacle.x + 10, obstacle.y + 4);
+            ctx.closePath();
+            ctx.fill();
+
+            // Kaca spion mungil
+            ctx.fillStyle = "#ECEFF1";
+            ctx.beginPath();
+            ctx.arc(obstacle.x + 5, obstacle.y + 2, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Kursi/Jok hitam
+            ctx.fillStyle = "#263238";
+            ctx.beginPath();
+            ctx.roundRect(obstacle.x + 18, obstacle.y + 10, 20, 4, 2);
+            ctx.fill();
+
+            // Lampu depan menyala kuning
+            ctx.fillStyle = "#FFEB3B";
+            ctx.beginPath();
+            ctx.arc(obstacle.x + 3, obstacle.y + 8, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Dua Roda Berputar
+            ctx.save();
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = "#37474F";
+            
+            // Roda Depan
+            ctx.translate(obstacle.x + 12, obstacle.y + 30);
+            ctx.rotate(obstacle.wheelRotation);
+            ctx.fillStyle = "#212121";
+            ctx.beginPath(); ctx.arc(0, 0, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-7, 0); ctx.lineTo(7, 0); ctx.stroke();
+            ctx.restore();
+
+            // Roda Belakang
+            ctx.save();
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = "#37474F";
+            ctx.translate(obstacle.x + obstacle.width - 12, obstacle.y + 30);
+            ctx.rotate(obstacle.wheelRotation);
+            ctx.fillStyle = "#212121";
+            ctx.beginPath(); ctx.arc(0, 0, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-7, 0); ctx.lineTo(7, 0); ctx.stroke();
+            ctx.restore();
+
+        } else if (obstacle.type === "truk") {
+            // Rintangan 3: Truk Box Logistik Mini (Sangat Canva, adil & imut)
+            if (!gameOver) obstacle.wheelRotation += 0.22;
+
+            // Box belakang truk
+            ctx.fillStyle = "#ECEFF1"; // Box putih
+            ctx.beginPath();
+            ctx.roundRect(obstacle.x + 20, obstacle.y + 2, obstacle.width - 22, obstacle.height - 18, 4);
+            ctx.fill();
+
+            // Garis pembatas box
+            ctx.strokeStyle = "#B0BEC5";
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(obstacle.x + 20, obstacle.y + 2, obstacle.width - 22, obstacle.height - 18);
+
+            // Kepala depan Truk (Cabin)
+            ctx.fillStyle = "#1e88e5"; // Cabin biru
+            ctx.beginPath();
+            ctx.moveTo(obstacle.x + 20, obstacle.y + 10);
+            ctx.lineTo(obstacle.x + 6, obstacle.y + 10);
+            ctx.lineTo(obstacle.x + 1, obstacle.y + 22);
+            ctx.lineTo(obstacle.x + 1, obstacle.y + 34);
+            ctx.lineTo(obstacle.x + 20, obstacle.y + 34);
+            ctx.closePath();
+            ctx.fill();
+
+            // Kaca Jendela Hitam
+            ctx.fillStyle = "#212121";
+            ctx.beginPath();
+            ctx.moveTo(obstacle.x + 17, obstacle.y + 13);
+            ctx.lineTo(obstacle.x + 8, obstacle.y + 13);
+            ctx.lineTo(obstacle.x + 5, obstacle.y + 20);
+            ctx.lineTo(obstacle.x + 17, obstacle.y + 20);
+            ctx.closePath();
+            ctx.fill();
+
+            // Lampu Truk
+            ctx.fillStyle = "#FFEB3B";
+            ctx.beginPath();
+            ctx.roundRect(obstacle.x + 1, obstacle.y + 25, 3, 5, 1);
+            ctx.fill();
+
+            // Dua Roda Truk Berputar
+            // Roda Depan
+            ctx.save();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "#455A64";
+            ctx.translate(obstacle.x + 15, obstacle.y + 35);
+            ctx.rotate(obstacle.wheelRotation);
+            ctx.fillStyle = "#111111";
+            ctx.beginPath(); ctx.arc(0, 0, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-9, 0); ctx.lineTo(9, 0); ctx.stroke();
+            ctx.restore();
+
+            // Roda Belakang
+            ctx.save();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "#455A64";
+            ctx.translate(obstacle.x + obstacle.width - 15, obstacle.y + 35);
+            ctx.rotate(obstacle.wheelRotation);
+            ctx.fillStyle = "#111111";
+            ctx.beginPath(); ctx.arc(0, 0, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-9, 0); ctx.lineTo(9, 0); ctx.stroke();
             ctx.restore();
         }
 
-        function checkCollision(rect1, rect2) {
-            const paddingX = 8;
-            const paddingY = 5;
-            return rect1.x < rect2.x + rect2.width - paddingX &&
-                   rect1.x + rect1.width > rect2.x + paddingX &&
-                   rect1.y < rect2.y + rect2.height - paddingY &&
-                   rect1.y + rect1.height > rect2.y + paddingY;
+        // Glow khusus Level 4 (Dimensi Neon Cyber)
+        if (level === 4) {
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = theme.rockShadow;
+            ctx.strokeStyle = theme.rockShadow;
+            ctx.lineWidth = 2.5;
+            ctx.strokeRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         }
 
-        function updateLevelSystem() {
-            currentLevel = Math.floor(score / 10) + 1;
-            vehicleSpeed = baseSpeed + (currentLevel - 1) * 0.75;
-        }
+        ctx.restore();
+    }
 
-        function resetGame() {
-            vehicles = [];
-            score = 0;
-            currentLevel = 1;
-            vehicleSpeed = baseSpeed;
-            gameActive = true;
-            loop();
-        }
+    /* STREAMING_CHUNK: Items & collectibles... */
+    // Menggambar Item Poin (Gabah & Cacing)
+    function drawItems() {
+        ctx.save();
+        items.forEach(item => {
+            const hoverOffset = Math.sin(Date.now() * 0.007 + item.bob) * 5;
+            const finalY = item.y + hoverOffset;
 
-        function loop() {
-            if (!gameActive) return;
+            if (item.type === "gabah") {
+                // Menggambar Gabah Emas Bulat bersinar
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#FFD54F";
+                ctx.fillStyle = "#FFD54F";
+                ctx.beginPath();
+                ctx.ellipse(item.x, finalY, 7, 10, Math.PI / 4, 0, Math.PI * 2);
+                ctx.fill();
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawEnvironment();
-
-            pitik.update();
-            pitik.draw();
-
-            updateLevelSystem();
-            wheelAngle -= 0.18;
-
-            spawnTimer++;
-            let dynamicInterval = Math.max(45, 90 - (currentLevel * 4));
-            if (spawnTimer > Math.random() * (dynamicInterval + 30) + dynamicInterval) {
-                spawnVehicle();
-                spawnTimer = 0;
-            }
-
-            for (let i = vehicles.length - 1; i >= 0; i--) {
-                let v = vehicles[i];
-                v.x -= v.speed;
-
-                ctx.fillStyle = v.color;
-
-                if (v.type === 'sedan') {
-                    ctx.fillRect(v.x, v.y + 12, v.width, v.height - 12);
-                    ctx.beginPath();
-                    ctx.moveTo(v.x + 15, v.y + 12);
-                    ctx.lineTo(v.x + 32, v.y);
-                    ctx.lineTo(v.x + 65, v.y);
-                    ctx.lineTo(v.x + 76, v.y + 12);
-                    ctx.fill();
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-                    ctx.fillRect(v.x + 35, v.y + 3, 25, 7);
-                    ctx.fillStyle = '#ffea00';
-                    ctx.fillRect(v.x, v.y + 16, 6, 7);
-
-                    drawWheel(v.x + 18, v.y + v.height - 2, 8.5, wheelAngle);
-                    drawWheel(v.x + v.width - 18, v.y + v.height - 2, 8.5, wheelAngle);
-
-                } else if (v.type === 'truck') {
-                    ctx.fillStyle = '#f1f5f9';
-                    ctx.fillRect(v.x + 35, v.y, v.width - 35, v.height - 4);
-                    ctx.fillStyle = 'rgba(52, 211, 153, 0.2)';
-                    ctx.fillRect(v.x + 40, v.y + 5, v.width - 45, v.height - 15);
-
-                    ctx.fillStyle = v.color;
-                    ctx.fillRect(v.x, v.y + 12, 35, v.height - 16);
-                    ctx.fillStyle = 'rgba(30, 41, 59, 0.7)';
-                    ctx.fillRect(v.x + 2, v.y + 16, 16, 12);
-                    ctx.fillStyle = '#e11d48';
-                    ctx.fillRect(v.x + v.width - 5, v.y + v.height - 15, 5, 8);
-
-                    drawWheel(v.x + 16, v.y + v.height - 4, 11, wheelAngle);
-                    drawWheel(v.x + v.width - 38, v.y + v.height - 4, 11, wheelAngle);
-                    drawWheel(v.x + v.width - 16, v.y + v.height - 4, 11, wheelAngle);
-
-                } else if (v.type === 'motor') {
-                    ctx.beginPath();
-                    ctx.moveTo(v.x, v.y + 8); 
-                    ctx.lineTo(v.x + 15, v.y + 15); 
-                    ctx.lineTo(v.x + 38, v.y + 15); 
-                    ctx.lineTo(v.x + v.width, v.y + v.height - 8);
-                    ctx.lineTo(v.x, v.y + v.height - 4);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.fillStyle = '#f8fafc';
-                    ctx.fillRect(v.x, v.y + 12, 5, 5);
-
-                    drawWheel(v.x + 8, v.y + v.height - 2, 7.5, wheelAngle);
-                    drawWheel(v.x + v.width - 8, v.y + v.height - 2, 7.5, wheelAngle);
-                }
-
-                if (checkCollision(pitik, v)) {
-                    gameActive = false;
-                }
-
-                if (v.x + v.width < 0) {
-                    vehicles.splice(i, 1);
-                    score++;
-                }
-            }
-
-            ctx.shadowColor = 'rgba(0,0,0,0.3)';
-            ctx.shadowBlur = 4;
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 17px "Plus Jakarta Sans", sans-serif';
-            ctx.fillText('🏆 SKOR PERMAINAN: ' + score, 30, 38);
-            ctx.shadowBlur = 0; 
-            
-            let hue = Math.max(0, 140 - (currentLevel * 9));
-            ctx.fillStyle = `hsl(${hue}, 85%, 45%)`;
-            ctx.beginPath();
-            ctx.roundRect(30, 52, 120, 28, 8);
-            ctx.fill();
-            
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
-            ctx.fillText('⚡ LEVEL: ' + currentLevel, 45, 71);
-
-            if (gameActive) {
-                requestAnimationFrame(loop);
+                // Kilauan putih kecil di tengah
+                ctx.fillStyle = "#FFFFFF";
+                ctx.beginPath();
+                ctx.ellipse(item.x - 2, finalY - 2, 2, 4, Math.PI / 4, 0, Math.PI * 2);
+                ctx.fill();
             } else {
-                ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = '#ef4444';
-                ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('KASIAN, PITIKNYA TERTABRAK! 💥', canvas.width / 2, canvas.height / 2 - 15);
-                
-                ctx.fillStyle = '#f8fafc';
-                ctx.font = '600 16px "Plus Jakarta Sans", sans-serif';
-                ctx.fillText('Kamu Bertahan Sampai Level ' + currentLevel + ' dengan Skor ' + score, canvas.width / 2, canvas.height / 2 + 25);
-                
-                ctx.fillStyle = '#fbbf24';
-                ctx.font = '500 14px "Plus Jakarta Sans", sans-serif';
-                ctx.fillText('Tekan SPASI / KLIK Area Game untuk Mencoba Kembali', canvas.width / 2, canvas.height / 2 + 60);
-                ctx.textAlign = 'left';
+                // Menggambar Cacing Lucu Melungker Merah Muda
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#FF8A80";
+                ctx.strokeStyle = "#FF8A80";
+                ctx.lineWidth = 4.5;
+                ctx.lineCap = "round";
+                ctx.beginPath();
+                ctx.moveTo(item.x - 8, finalY + 4);
+                ctx.quadraticCurveTo(item.x - 3, finalY - 6, item.x + 2, finalY + 2);
+                ctx.quadraticCurveTo(item.x + 6, finalY + 8, item.x + 10, finalY - 2);
+                ctx.stroke();
+
+                // Kepala cacing mungil
+                ctx.fillStyle = "#FF5252";
+                ctx.beginPath();
+                ctx.arc(item.x - 8, finalY + 4, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
+        ctx.restore();
+    }
+
+    // Menggambar Efek Partikel Point Ambilan
+    function drawParticles() {
+        ctx.save();
+        for (let i = particleEffects.length - 1; i >= 0; i--) {
+            let p = particleEffects[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.alpha -= p.decay;
+
+            if (p.alpha <= 0) {
+                particleEffects.splice(i, 1);
+                continue;
+            }
+
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    // Menggambar Teks Popup Melayang
+    function drawFloatingTexts() {
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.font = "bold 16px system-ui, sans-serif";
+        for (let i = floatingTexts.length - 1; i >= 0; i--) {
+            let ft = floatingTexts[i];
+            ft.y -= 1.5; // Melayang naik
+            ft.alpha -= 0.03; // Memudar perlahan
+
+            if (ft.alpha <= 0) {
+                floatingTexts.splice(i, 1);
+                continue;
+            }
+
+            ctx.fillStyle = ft.color;
+            ctx.globalAlpha = ft.alpha;
+            ctx.fillText(ft.text, ft.x, ft.y);
+        }
+        ctx.restore();
+    }
+
+    // Menggambar Kunang-kunang Malam Hari (Level 3)
+    function drawFireflies() {
+        ctx.save();
+        fireflies.forEach(f => {
+            f.angle += (Math.random() - 0.5) * 0.2;
+            f.x += Math.cos(f.angle) * f.speed;
+            f.y += Math.sin(f.angle) * f.speed;
+
+            if (f.x < 0) f.x = canvas.width;
+            if (f.x > canvas.width) f.x = 0;
+            if (f.y < 220) f.y = 350;
+            if (f.y > 350) f.y = 220;
+
+            let glowAlpha = 0.3 + Math.sin(Date.now() * 0.005 + f.x) * 0.4;
+            ctx.fillStyle = `rgba(139, 195, 74, ${glowAlpha})`;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.size * 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = `rgba(220, 245, 150, ${glowAlpha + 0.3})`;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        ctx.restore();
+    }
+
+    /* STREAMING_CHUNK: Main game update loop... */
+    // Loop Game Utama
+    function update() {
+        const currentTheme = themes[level] || themes[4];
+
+        if (gameOver) {
+            // Simpan Highscore di Local Storage secara otomatis
+            if (score > highscore) {
+                highscore = score;
+                localStorage.setItem("pitik_highscore", highscore);
+            }
+
+            // Overlay Game Over sinematik yang bersih
+            ctx.fillStyle = "rgba(10, 10, 16, 0.82)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = "#FF1744";
+            ctx.fillStyle = "#FF1744";
+            ctx.font = "bold 40px system-ui, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("PITIK NABRAK!", canvas.width / 2, canvas.height / 2 - 25);
+            
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "#ECEFF1";
+            ctx.font = "600 20px system-ui, sans-serif";
+            ctx.fillText("Skor Akhir: " + score + " | Rekor Terbaik: " + highscore, canvas.width / 2, canvas.height / 2 + 15);
+            
+            ctx.fillStyle = "#B0BEC5";
+            ctx.font = "500 16px system-ui, sans-serif";
+            ctx.fillText("Tekan SPASI, KLIK, atau TAP LAYAR untuk main lagi!", canvas.width / 2, canvas.height / 2 + 55);
+            return;
+        }
+
+        // --- 1. LOGIKA FISIKA & PERGERAKAN ---
+        pitik.velocityY += pitik.gravity;
+        pitik.y += pitik.velocityY;
+
+        // Toleransi menapak lembut di atas rimbunan rumput
+        if (pitik.y >= 310) {
+            // Efek melenting sedikit (squish) saat mendarat dari lompatan
+            if (pitik.isJumping) {
+                pitik.squishY = 0.75;
+                pitik.squishX = 1.25;
+            }
+            pitik.y = 310;
+            pitik.isJumping = false;
+        }
+
+        obstacle.x -= obstacle.speed;
+
+        // Spawning item points
+        spawnItem();
+
+        // Menggerakkan item poin & mendeteksi koleksi (Collision)
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items[i];
+            item.x -= obstacle.speed;
+
+            // Deteksi tabrakan ayam dengan item points
+            let distToItem = Math.hypot((pitik.x + 22) - item.x, (pitik.y + 22) - item.y);
+            if (distToItem < 30) {
+                const addScore = item.type === "cacing" ? 15 : 5;
+                const pointColor = item.type === "cacing" ? "#FF8A80" : "#FFD54F";
+                score += addScore;
+
+                // Animasi & partikel ledakan gemas
+                createSpark(item.x, item.y, pointColor);
+                floatingTexts.push({
+                    x: item.x,
+                    y: item.y - 10,
+                    text: "+" + addScore,
+                    color: pointColor,
+                    alpha: 1
+                });
+
+                // Hapus item dari peta setelah ditangkap
+                items.splice(i, 1);
+                continue;
+            }
+
+            // Hapus item jika sudah keluar layar kiri
+            if (item.x < -item.width) {
+                items.splice(i, 1);
             }
         }
 
-        window.addEventListener('keydown', function(e) {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                pitik.jump();
-            }
-        });
+        // Logika ketika rintangan meluncur bebas ke arah kiri
+        if (obstacle.x < -obstacle.width) {
+            obstacle.x = canvas.width;
+            score += 10;
+            chooseNewObstacle(); // Ganti jenis rintangan secara acak untuk putaran selanjutnya!
 
-        canvas.addEventListener('click', function() {
-            pitik.jump();
-        });
+            // Sistem Naik Level Berdasarkan Skor
+            if (score >= 50 && level === 1) { level = 2; obstacle.speed = 9; }
+            else if (score >= 120 && level === 2) { level = 3; obstacle.speed = 11.5; }
+            else if (score >= 200 && level === 3) { level = 4; obstacle.speed = 14.5; }
+        }
 
-        loop();
-    </script>
+        // --- 2. DETEKSI TABRAKAN (COLLISION DETECTION) ---
+        // Penyesuaian kotak tabrakan (hitbox) Truk / Motor agar lebih adil bagi ayam
+        let hitboxWidthOffset = obstacle.type === "truk" ? 8 : 4;
+        let hitboxHeightOffset = obstacle.type === "motor" ? 4 : 2;
+
+        if (
+            pitik.x + 4 < obstacle.x + obstacle.width - hitboxWidthOffset &&
+            pitik.x + pitik.width - 4 > obstacle.x + hitboxWidthOffset &&
+            pitik.y + 4 < obstacle.y + obstacle.height - hitboxHeightOffset &&
+            pitik.y + pitik.height - 2 > obstacle.y + hitboxHeightOffset
+        ) {
+            gameOver = true;
+        }
+
+        // --- 3. PROSES GAMBAR (RENDER VISUAL) ---
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Gambar Gradasi Langit Indah
+        let skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        skyGradient.addColorStop(0, currentTheme.skyTop);
+        skyGradient.addColorStop(1, currentTheme.skyBottom);
+        ctx.fillStyle = skyGradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Efek Bintang berkelip (Level Malam & Cyber)
+        if (currentTheme.hasStars) {
+            stars.forEach(star => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                ctx.fillRect(star.x, star.y, star.size, star.size);
+                star.alpha += (Math.random() - 0.5) * 0.08;
+                if (star.alpha < 0.2) star.alpha = 0.2;
+                if (star.alpha > 1) star.alpha = 1;
+            });
+        }
+
+        // Gambar Latar Belakang (Sun / Sunset)
+        drawSun(currentTheme);
+
+        // Gambar Awan Bergerak
+        drawClouds(currentTheme);
+
+        // Gambar Bukit Latar Belakang (Parallax)
+        drawHills(currentTheme);
+
+        // Kunang-kunang untuk malam hari
+        if (currentTheme.hasFireflies) {
+            drawFireflies();
+        }
+
+        // Gambar Aset Utama Game
+        drawItems();
+        drawObstacle(currentTheme);
+        drawLushGrass(currentTheme);
+        drawPitik();
+
+        // Gambar partikel & teks popup
+        drawParticles();
+        drawFloatingTexts();
+
+        // Desain UI Informasi Skor Terbuka & Bersih ala Canva
+        ctx.save();
+        ctx.fillStyle = "#FFFFFF";
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = "rgba(0,0,0,0.4)";
+        ctx.font = "bold 20px system-ui, -apple-system, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("🌾 Gabah (Skor): " + score, 30, 45);
+        ctx.fillText("🏆 Terbaik: " + highscore, 30, 75);
+        
+        ctx.textAlign = "right";
+        ctx.fillText("⭐ Level: " + level, canvas.width - 30, 45);
+        ctx.restore();
+
+        requestAnimationFrame(update);
+    }
+
+    // Jalankan game pertama kali
+    update();
+</script>
+
 </body>
 </html>
